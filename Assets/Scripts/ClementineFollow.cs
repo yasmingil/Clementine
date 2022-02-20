@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class ClementineFollow : MonoBehaviour
 {
+    private float speed = 1.0f;
     bool startfollow = false;
     GameObject player;
     private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -18,7 +20,7 @@ public class ClementineFollow : MonoBehaviour
     {
         if (startfollow)
         {
-            // rb.position = 
+            rb.MovePosition((player.position - rb.position) * speed);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
