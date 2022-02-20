@@ -20,7 +20,7 @@ public class ClementineFollow : MonoBehaviour
     {
         if (startfollow)
         {
-            rb.MovePosition((player.position - rb.position) * speed);
+            rb.MovePosition((player.transform.position - rb.position) * speed);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
