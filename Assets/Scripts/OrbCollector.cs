@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Orb : MonoBehavior 
+public class Orb : MonoBehaviour
 {
     public float Scalar = 0.2f;
 
     private void OnTriggerEnter(Collider other)
     {
         Daylight D = other.GetComponent<Daylight>();
-        destroy(other);
+        //destroy(other);
 
         if (D == null) 
         {
@@ -18,7 +18,7 @@ public class Orb : MonoBehavior
 
         else 
         {
-            D.Hours += 0.2f * Time.deltaTime;
+           // D.Hours += 0.2f * Time.deltaTime;
         }
     }
 }
