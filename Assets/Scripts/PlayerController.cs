@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float speed = 1f;
-    [SerializeField] private float jumpSpeed = 1f;
+    [SerializeField] private float speed = 0.1f;
+    [SerializeField] private float jumpSpeed = 0.1f;
 
     private Vector2 playerInput = new Vector2();
     private Rigidbody2D rb;
+    private Animator anim;
     
     private enum PlayerState {IDLE, WALK, RUN, JUMP};
     private PlayerState currentState = PlayerState.IDLE;
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         
     }
 
@@ -32,10 +34,11 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + playerInput * speed);
+        anim.SetBool("walk", playerInput.x != 0);
         if (Input.GetKeyDown(KeyCode.Space))
         {
             // jump
-            rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+            rb.MovePosition(rb.position + new Vector2(0, 1* jumpSpeed));
             
 
         }
